@@ -17,6 +17,7 @@ int main(void) {
         printf("5) AES MixColumns\n");
         printf("6) Analyse avalanche (DES demo)\n");
         printf("7) RSA utilitaires\n");
+        printf("8) Generation sous-cles DES\n");
         printf("0) Quitter\n");
         printf("Votre choix : ");
 
@@ -33,6 +34,7 @@ int main(void) {
             case 5: run_aes_mixcolumns(); break;
             case 6: run_analyse_avalanche(); break;
             case 7: run_rsa(); break;
+            case 8: run_generationcleDES(); break;
             case 0: printf("Au revoir.\n"); break;
             default: printf("Choix invalide.\n");
         }

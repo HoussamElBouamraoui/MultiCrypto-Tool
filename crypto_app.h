@@ -8,5 +8,6 @@ void run_playfair_crack(void);
 void run_aes_mixcolumns(void);
 void run_analyse_avalanche(void);
 void run_rsa(void);
+void run_generationcleDES(void);
 
 #endif

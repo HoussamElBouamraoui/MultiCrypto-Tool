@@ -24,7 +24,7 @@ $args = @("-std=c11","-Wall","-Wextra")
 if ($Release) { $args += "-O2" } else { $args += "-O0"; $args += "-g" }
 
 # Liste des sources attendues (modifiez si nécessaire)
-$sources = @("app.c","cesar.c","transposition.c","generateur_playfair.c","crack_playfair.c","AESmixcolumns.c","analyse_avalanche.c","RSA.c")
+$sources = @("app.c","cesar.c","transposition.c","generateur_playfair.c","crack_playfair.c","AESmixcolumns.c","analyse_avalanche.c","RSA.c","generationcleDES.c")
 $existing = $sources | Where-Object { Test-Path $_ }
 if ($existing.Count -eq 0) {
     Write-Error "Aucun fichier source trouvé dans $PWD"

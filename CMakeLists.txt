@@ -4,6 +4,7 @@ project(MultiCryptoTool C)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 
+# Binaire principal (menu)
 add_executable(app
     app.c
     cesar.c
@@ -14,4 +15,8 @@ add_executable(app
     analyse_avalanche.c
     RSA.c
     generationcleDES.c
+        generationcleDES.c
 )
+
+# Utilitaire DES (sous-clés) compilé séparément car il contient son propre main
+add_executable(gen_des generationcleDES.c)

@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+void run_generationcleDES(void);
+
 void left_shift(int tab[28], int shifts) {
     int temp[2];
 
@@ -96,7 +98,7 @@ static int hexval(char c) {
 }
 
 static int parse_key_hex16_to_bits(const char *hex16, int bits64[64]) {
-    // hex16 = 16 caractères hex -> 8 octets -> 64 bits
+    // hex16 = 16 caractï¿½res hex -> 8 octets -> 64 bits
     for (int i = 0; i < 16; i++) {
         if (hexval(hex16[i]) < 0) return 0;
     }
@@ -120,7 +122,7 @@ static void print_subkey_bits(const int sk[48]) {
     printf("\n");
 }
 
-int main(void) {
+void run_generationcleDES(void) {
     int choix;
 
     while (1) {
@@ -130,7 +132,7 @@ int main(void) {
         printf("0) Quitter\n");
         printf("Votre choix: ");
 
-        if (scanf("%d", &choix) != 1) return 0;
+        if (scanf("%d", &choix) != 1) return;
 
         switch (choix) {
             case 1: {
@@ -186,7 +188,7 @@ int main(void) {
 
             case 0:
                 printf("Fin.\n");
-                return 0;
+                return;
 
             default:
                 printf("Choix invalide.\n");
@@ -194,3 +196,9 @@ int main(void) {
     }
 }
 
+#ifdef GENERATIONCLEDES_STANDALONE
+int main(void) {
+    run_generationcleDES();
+    return 0;
+}
+#endif
