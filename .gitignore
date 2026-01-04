@@ -1,0 +1,10 @@
+# Ignorer artefacts de build
+# ...existing code...
+*.exe
+*.o
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+build.ninja
+Testing/
+
