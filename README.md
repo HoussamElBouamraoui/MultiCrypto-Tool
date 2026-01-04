@@ -1,41 +1,122 @@
-# MultiCrypto Tool – Application console
+# 🔐 MultiCrypto-Tool
 
-Application C tout-en-un regroupant plusieurs démos d’algorithmes classiques : César, transposition, Playfair (génération et attaque), AES MixColumns, analyse d’avalanche (DES) et petits utilitaires RSA. L’exécutable principal est `app.exe`.
+MultiCrypto-Tool est un projet académique développé en **C** regroupant plusieurs algorithmes de cryptographie (classique et moderne) accessibles via un **menu interactif en ligne de commande**. Un seul `main` existe, situé dans `app.c`.
 
-## Prérequis
-- Windows avec PowerShell
-- gcc (MinGW/MinGW-w64) disponible dans le `PATH` ou chemin fourni via `-GccPath`
+## 📚 Fonctionnalités
+- 🔁 Chiffrement de **César**
+- 🔁 Chiffrement par **Transposition**
+- 🔐 **RSA** (cryptographie asymétrique)
+- 🔑 Génération de clé **DES**
+- 🔍 Analyse de l’**effet avalanche**
+- 🧮 **AES – MixColumns**
+- 🔤 Chiffrement et attaque **Playfair**
 
-## Construction
-Depuis le dossier du projet :
+Chaque algorithme est implémenté dans un fichier `.c` séparé et appelé depuis un menu central.
 
-```powershell
-# Build debug (par défaut)
-./build.ps1
+## 🗂️ Structure du projet
+```text
+MultiCrypto-Tool/
+│
+├── app.c                   # Point d’entrée (SEUL main)
+├── cesar.c
+├── transposition.c
+├── RSA.c
+├── generationcleDES.c
+├── analyse_avalanche.c
+├── AESmixcolumns.c
+├── generateur_playfair.c
+├── crack_playfair.c
+├── crypto_app.h            # Prototypes des fonctions
+├── CMakeLists.txt          # (optionnel)
+└── README.md
+```
+⚠️ Règle fondamentale : il doit y avoir un seul `main()`, situé dans `app.c`.
 
-# Build release (optimisé)
-./build.ps1 -Release
+---
 
-# Spécifier un gcc particulier
-./build.ps1 -GccPath "C:\chemin\vers\gcc.exe"
+## 🖥️ Installation (Linux)
+1) Mettre à jour et installer les outils :
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y gcc make build-essential git
 ```
 
-Le script compile toutes les sources listées (`app.c`, `cesar.c`, `transposition.c`, `generateur_playfair.c`, `crack_playfair.c`, `AESmixcolumns.c`, `analyse_avalanche.c`, `RSA.c`) et produit `app.exe`.
+2) Cloner le projet :
+```bash
+git clone https://github.com/HoussamElBouamraoui/MultiCrypto-Tool.git
+cd MultiCrypto-Tool
+```
 
-## Exécution
+3) Compilation rapide avec gcc :
+```bash
+gcc app.c \
+    cesar.c \
+    transposition.c \
+    RSA.c \
+    generateur_playfair.c \
+    crack_playfair.c \
+    generationcleDES.c \
+    analyse_avalanche.c \
+    AESmixcolumns.c \
+    -o app
+```
+
+4) Exécution :
+```bash
+./app
+```
+Un menu interactif s’affiche pour choisir l’algorithme.
+
+### Erreurs courantes
+- `multiple definition of main` : il y a plus d’un `main()`. Garder uniquement celui de `app.c`.
+- `undefined reference to run_xxx` : un fichier `.c` manque dans la commande `gcc`.
+- `./app: No such file or directory` : la compilation a échoué. Corriger les erreurs puis recompiler.
+
+### Vérification rapide
+```bash
+grep -R "int main" *.c
+```
+Attendu : `app.c:int main(...)` seulement.
+
+---
+
+## 🖥️ Installation (Windows, MinGW via build.ps1)
+Prérequis : PowerShell + gcc (MinGW/MinGW-w64) dans le `PATH`.
+
+1) Lancer le script de build :
+```powershell
+./build.ps1          # Debug
+./build.ps1 -Release # Optimisé
+```
+
+2) Exécuter :
 ```powershell
 ./app.exe
 ```
-Un menu s’affiche. Saisir le numéro voulu puis valider. Les modules disponibles :
-- 1 : Chiffre de César
-- 2 : Transposition
-- 3 : Génération de clé Playfair
-- 4 : Cassage Playfair
-- 5 : AES MixColumns (démonstration)
-- 6 : Analyse d’avalanche (DES)
-- 7 : Utilitaires RSA (petits calculs)
-- 0 : Quitter
 
-## Notes
-- Le script ne génère qu’un seul exécutable (`app.exe`) intégrant tous les modules. Les `.exe` individuels ne sont pas nécessaires.
-- En cas d’absence de gcc, installez MinGW/MinGW-w64 ou passez `-GccPath` avec le chemin complet de `gcc.exe`.
+Modules dans le menu :
+- 1: César
+- 2: Transposition
+- 3: Playfair Générateur
+- 4: Playfair Crack
+- 5: AES MixColumns
+- 6: Analyse avalanche (DES)
+- 7: RSA utilitaires
+- 8: Generation sous-cles DES
+- 0: Quitter
+
+---
+
+## ⚙️ Compilation avec CMake (optionnel)
+```bash
+mkdir -p build
+cd build
+cmake ..
+make
+./app
+```
+
+---
+
+## 🎓 Contexte
+Projet pédagogique (2024–2025) visant à pratiquer la structuration d’un projet C multi-fichiers et la compilation sur Linux/Windows.
