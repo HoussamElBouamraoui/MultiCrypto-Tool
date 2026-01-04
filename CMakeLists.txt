@@ -1,15 +1,17 @@
-cmake_minimum_required(VERSION 4.0)
-project(TP1 C)
+cmake_minimum_required(VERSION 3.10)
+project(MultiCryptoTool C)
 
 set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
 
-add_executable(TP1
-        crack_playfair.c
-        generateur_playfair.c
-        main.c
-        cesar.c
-        transposition.c
-        app.c
-        app.c
-        RSA.c
-        RSA.c)
+add_executable(app
+    app.c
+    cesar.c
+    transposition.c
+    generateur_playfair.c
+    crack_playfair.c
+    AESmixcolumns.c
+    analyse_avalanche.c
+    RSA.c
+    generationcleDES.c
+)
